@@ -1,5 +1,5 @@
-const carousel = document.getElementById("carousel");
 
+const carousel = document.getElementById("carousel");
 
 const images = [
     {
@@ -24,7 +24,8 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
-//creo un ciclo for, prendo l'indice dell'oggetto dell'array e infine con una condizione assegno l'active sempre all'indice 0 aggiungendo all'html le parole chiavi con annesse proprietà
+
+
 for (let i = 0; i < images.length; i++) {
     const currentImage = images[i];
     console.log(currentImage);
@@ -33,73 +34,73 @@ for (let i = 0; i < images.length; i++) {
     if (i === 0) {
         activeClass = "active"
     }
-    carousel.innerHTML += `<div class="image-container ${activeClass}"><img src="${currentImage.image}" alt="" class="images"><div class="text-container"><h3>${currentImage.title}</h3> <br> ${currentImage.text}</div>`;
 
+    // Creo struttura
+    carousel.innerHTML += `<div class="image-container ${activeClass}">
+    <img src="${currentImage.image}" alt="" class="img">
+    <div class="description"><h2>${currentImage.title}</h2> <br> ${currentImage.text}</div>`;
 
 }
+
+
+// array.forEach(images, i => {
+//     const currentImage = images[i];
+//     console.log(currentImage)
+//     activeClass = "";
+//     if (i === 0) {
+//         activeClass = "active"
+//     }
+//     carousel.innerHTML += `<div class="image-container ${activeClass}">
+//     <img src="${currentImage.image}" alt="" class="img">
+//     <div class="description"><h3>${currentImage.title}</h3> <br> ${currentImage.text}</div>`;
+// });
+
+
 const leftBtn = document.getElementById("left-btn");
 const rightBtn = document.getElementById("right-btn");
 let currentImageIndex = 0;
 
 rightBtn.addEventListener("click", function () {
-    console.log("right");
-
-    //seleziono gli elementi che hanno la stessa classe e le salvo in una const
-    const imageListElement = document.querySelectorAll(".image-container");
-
-    //qui vado a rimuovere l'active, in modo tale che all'addeventlistener cliccando va a rimuovere l'active all'indice 0
-    imageListElement[currentImageIndex].classList.remove("active");
-
-    // contatore dell'indice degli elementi
-    currentImageIndex++;
-
-    if (currentImageIndex > imageListElement.length - 1) {
-        currentImageIndex = 0;
-    }
-
-    // Siccome ora currentImageIndex ha un numero diverso da prima, lo uso per assegnare la classe active
-    imageListElement[currentImageIndex].classList.add("active");
-
-
+    right();
 });
 
 
 leftBtn.addEventListener("click", function () {
+    left()
+});
 
 
+
+function right() {
+    // querySelectorAll cosi prendo tutti gli elementi
     const imageListElement = document.querySelectorAll(".image-container");
 
+    // rimuovo active all'indice 0
+    imageListElement[currentImageIndex].classList.remove("active");
+
+    currentImageIndex++;
+
+    // Ciclo infinito di immagini
+    if (currentImageIndex > imageListElement.length - 1) {
+        currentImageIndex = 0;
+    }
+
+    imageListElement[currentImageIndex].classList.add("active");
+}
+
+
+
+function left() {
+    const imageListElement = document.querySelectorAll(".image-container");
 
     imageListElement[currentImageIndex].classList.remove("active");
 
-    //contatore che va ridotto 
     currentImageIndex--;
 
+    // Ciclo infinito di immagini
     if (currentImageIndex < 0) {
         currentImageIndex = imageListElement.length - 1;
     }
 
     imageListElement[currentImageIndex].classList.add("active");
-});
-
-
-
-
-// setInterval(function () {
-//     console.log("ogni 3 secondi")
-
-//     const imageElement = document.querySelectorAll(".image-container");
-
-//     //qui vado a rimuovere l'active, in modo tale che all'addeventlistener cliccando va a rimuovere l'active all'indice 0
-//     imageElement[currentImageIndex].classList.remove("active");
-
-//     // contatore dell'indice degli elementi
-//     currentImageIndex++;
-
-//     if (currentImageIndex > imageElement.length - 1) {
-//         currentImageIndex = 0;
-//     }
-//     console.log("ogni 3 secondi")
-//     // Siccome ora currentImageIndex ha un numero diverso da prima, lo uso per assegnare la classe active
-//     imageElement[currentImageIndex].classList.add("active");
-// }, 3000);
+}
