@@ -104,3 +104,5 @@ function left() {
 
     imageListElement[currentImageIndex].classList.add("active");
 }
+
+autoSlideCarousel = setInterval(right, 3000);
