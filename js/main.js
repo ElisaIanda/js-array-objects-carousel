@@ -1,5 +1,7 @@
 
 const carousel = document.getElementById("carousel");
+let currentImageIndex = 0;
+const thumbContainer = document.getElementById("thumb-container");
 
 const images = [
     {
@@ -39,26 +41,27 @@ for (let i = 0; i < images.length; i++) {
     carousel.innerHTML += `<div class="image-container ${activeClass}">
     <img src="${currentImage.image}" alt="" class="img">
     <div class="description"><h2>${currentImage.title}</h2> <br> ${currentImage.text}</div>`;
-
 }
 
 
-// array.forEach(images, i => {
+// for (let i = 0; i < images.length; i++) {
 //     const currentImage = images[i];
-//     console.log(currentImage)
 //     activeClass = "";
-//     if (i === 0) {
-//         activeClass = "active"
-//     }
-//     carousel.innerHTML += `<div class="image-container ${activeClass}">
-//     <img src="${currentImage.image}" alt="" class="img">
-//     <div class="description"><h3>${currentImage.title}</h3> <br> ${currentImage.text}</div>`;
-// });
+
+//     // if (i === currentImageIndex) {
+//     //     div.classList.add("active");
+//     // }
+
+//     thumbContainer.innerHTML += `<div class="image-thumb ${activeClass}">
+//     <img src="${currentImage.image}" alt="" class="img-thumb">
+//     <div class="description"><h2>${currentImage.title}</h2> <br> ${currentImage.text}</div>`;
+// }
+
 
 
 const leftBtn = document.getElementById("left-btn");
 const rightBtn = document.getElementById("right-btn");
-let currentImageIndex = 0;
+// let currentImageIndex = 0;
 
 rightBtn.addEventListener("click", function () {
     right();

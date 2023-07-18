@@ -43,3 +43,25 @@
     text-align: end;
     padding-right: 1rem;
 }
+
+
+
+/* thumbnail */
+.thumb-container {
+    display: flex;
+
+}
+
+.image-thumb {
+    flex-grow: 1;
+    flex-basis: 0;
+    position: relative;
+    filter: grayscale(100);
+    transition: filter .3s;
+}
+
+.img-thumb {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}
